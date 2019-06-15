@@ -1,0 +1,161 @@
+﻿<!doctype html>
+<html>
+    <head>
+        <title>Snake Game - O Grupo</title>
+        <script src="gl-matrix.js"></script>
+        <script src="programa.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
+        <style>
+            body {
+                background-color: black;
+            }
+
+            canvas {
+                /*position: fixed;*/
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+                display: block;
+                background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 1) 0), -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.0980392) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.0980392) 75%, rgba(0, 0, 0, 0.0980392) 0), green;
+                background: -moz-linear-gradient(45deg, rgba(0, 0, 0, 1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 1) 0), -moz-linear-gradient(45deg, rgba(0, 0, 0, 0.0980392) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.0980392) 75%, rgba(0, 0, 0, 0.0980392) 0), green;
+                background: linear-gradient(45deg, rgba(0, 0, 0, 1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 1) 0), linear-gradient(45deg, rgba(0, 0, 0, 0.0980392) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.0980392) 75%, rgba(0, 0, 0, 0.0980392) 0), green;
+                background-repeat: repeat, repeat;
+                background-position: 0px 0, 5px 5px;
+                -webkit-transform-origin: 0 0 0;
+                transform-origin: 0 0 0;
+                -webkit-background-origin: padding-box, padding-box;
+                background-origin: padding-box, padding-box;
+                -webkit-background-clip: border-box, border-box;
+                background-clip: border-box, border-box;
+                -webkit-background-size: 10px 10px, 10px 10px;
+                background-size: 10px 10px, 10px 10px;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+                text-shadow: none;
+                -webkit-transition: none;
+                -moz-transition: none;
+                -o-transition: none;
+                transition: none;
+                -webkit-transform: scaleX(1) scaleY(1) scaleZ(1);
+                transform: scaleX(1) scaleY(1) scaleZ(1);
+
+            }
+
+            #score{
+                text-align: center;
+                margin-bottom: 50px;
+                /*margin-top: 190px;*/
+                font-family: 'VT323', monospace;
+                color: green;
+            }
+
+            table, th, td {
+                /*border: 1px solid black;*/
+                border-color: white;
+                border-collapse: collapse;
+                font-family: 'VT323', monospace;
+                font-size: 30px;
+                color: green;
+                background: black;
+            }
+
+            .score_div{
+
+                position: fixed;
+                left: 10%;
+                top: 35%;
+                transform: translateX(-50%);
+            }
+            .btn {
+                border: none;
+                background-color: inherit;
+                padding: 14px 28px;
+                font-size: 16px;
+                cursor: pointer;
+                display: inline-block;
+            }
+            .pause {
+                color: green;
+                font-family: 'VT323', monospace;
+                font-size: 40px;
+            }
+
+            .slider {
+                -webkit-appearance: none;
+                width: 20%;
+                height: 15px;
+                background: green;
+                outline: none;
+                border-color: white;
+            }
+
+            .slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                width: 15px;
+                height: 15px;
+                background: white;
+                cursor: pointer;
+            }
+
+            .slider::-moz-range-thumb {
+                width: 15px;
+                height: 15px;
+                background: white;
+                cursor: pointer;
+            }
+
+            .output {
+                color: green;
+                font-size: 35px;
+                font-family: 'VT323', monospace;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="controls">
+            <input class="slider" id="sliderx" type="range" min="0" max="500" step="1"  value="50">
+            <output class="output" id="outputx">0</output>
+            <input class="slider" id="slidery" type="range" min="0" max="500" step="1"  value="50">
+            <output class="output" id="outputy">0</output>
+            <input class="slider" id="sliderz" type="range" min="0" max="500" step="1"  value="50">
+            <output class="output" id="outputz">0</output>
+        </div>
+        <div>
+            <button class="btn pause" id="pauseBtn" onclick="pauseControls()">||</button>
+        </div>
+        <div class="score_div">
+            <table id="table_score">
+                <th colspan="2">SCOREBOARD</th>
+                <tr>
+                    <th>Player</th>
+                    <th>Score</th>
+                </tr>
+                <tr>
+                    <td>GMI</td>
+                    <td>99999999</td>
+                </tr>
+                <tr>
+                    <td>GMA</td>
+                    <td>99999999</td>
+                </tr>
+                <tr>
+                    <td>PTR</td>
+                    <td>99999999</td>
+                </tr>
+                <tr>
+                    <td>GUS</td>
+                    <td>99999999</td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <h1 id="score">Score: 0</h1>
+        </div>
+        <div>
+            <canvas height="2500" width="2500" style="border: 1px solid black;"></canvas>
+        </div>
+    </body>
+</html>
